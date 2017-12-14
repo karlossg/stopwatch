@@ -1,0 +1,40 @@
+body {
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  margin: 15px;
+}
+
+li {
+  list-style-type: none;
+  width: 120px;
+}
+
+.container {
+  text-align: center;
+  background-color: peru;
+  width: 200px;
+  min-height: 150px;
+  border-radius: 5px;
+  margin-top: 150px;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stopwatch {
+  margin: 10px;
+  font-size: 30px;
+}
+
+.resetListButton {
+  margin-right: 55px;
+}

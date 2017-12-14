@@ -86,7 +86,8 @@ class Stopwatch {
   }
 
   createResetButton() {
-    const resetListButton = document.createElement('Button');
+    const resetListButton = document.createElement('a');
+    resetListButton.href = '#';
     resetListButton.textContent = 'Reset';
     resetListButton.className = 'resetListButton';
     resetListButton.addEventListener('click', () => stopwatch.resetResultList());

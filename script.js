@@ -89,10 +89,13 @@ class Stopwatch {
     const resetListButton = document.createElement('Button');
     resetListButton.textContent = 'Reset';
     resetListButton.className = 'resetListButton';
+    resetListButton.addEventListener('click', () => stopwatch.resetResultList());
     return resetListButton;
   }
 
-  resetResultList() {}
+  resetResultList() {
+    document.querySelector('.results').innerHTML = '';
+  }
 }
 
 const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));

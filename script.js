@@ -10,6 +10,9 @@ resetButton.addEventListener('click', () => {
   stopwatch.print(this.times);
 });
 
+const saveButton = document.getElementById('save');
+saveButton.addEventListener('click', () => stopwatch.save());
+
 class Stopwatch {
   constructor(display) {
     this.running = false;
@@ -30,8 +33,16 @@ class Stopwatch {
     this.display.innerText = this.format(this.times);
   }
 
+  pad0(value) {
+    let result = value.toString();
+    if (result.length < 2) {
+      result = '0' + result;
+    }
+    return result;
+  }
+
   format(times) {
-    return `${pad0(times.minutes)}:${pad0(times.seconds)}:${pad0(Math.floor(times.miliseconds))}`;
+    return `${this.pad0(times.minutes)}:${this.pad0(times.seconds)}:${this.pad0(Math.floor(times.miliseconds))}`;
   }
 
   start() {
@@ -64,17 +75,24 @@ class Stopwatch {
     clearInterval(this.watch);
   }
 
-  reseter() {
-    this.reset();
+  save() {
+    const resultsList = document.querySelector('.results');
+    const resultLi = document.createElement('li');
+    resultLi.textContent = stopwatch.display.innerText;
+    resultsList.insertBefore(resultLi, resultsList.childNodes[0]);
+    if (!resultsList.childNodes[1]) {
+      resultsList.appendChild(this.createResetButton());
+    }
   }
+
+  createResetButton() {
+    const resetListButton = document.createElement('Button');
+    resetListButton.textContent = 'Reset';
+    resetListButton.className = 'resetListButton';
+    return resetListButton;
+  }
+
+  resetResultList() {}
 }
 
-let stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
-
-function pad0(value) {
-  let result = value.toString();
-  if (result.length < 2) {
-    result = '0' + result;
-  }
-  return result;
-}
+const stopwatch = new Stopwatch(document.querySelector('.stopwatch'));
